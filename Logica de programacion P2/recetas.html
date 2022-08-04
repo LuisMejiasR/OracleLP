@@ -1,0 +1,45 @@
+<meta charset="UTF-8">
+
+<h1>Recetas de Luis</h1>
+
+<script>
+
+    var ingredientes = [];
+    var cantidad = parseInt(prompt("¿Cuántos ingredientes vas a añadir?"));
+    var contador = 1;
+
+    //mientras que la cantidad de ingredientes sea mayor o igual al contador
+    while( contador <= cantidad) {
+        //le preguntamos al usuario el nombre del ingrediente
+        var ingrediente = prompt("Informe el ingrediente " + contador);
+        
+        //ingresamos al array y verificar si ya está ingresado el ingrediente
+        //variable para declarar por defecto que el ingrediente no está añadido
+        var ingredienteAñadido = false;
+
+        //validamos recorriendo el arreglo y declarando una posición inicial de 0
+        for(var posicion = 0; posicion < ingredientes.length; posicion++){
+            //si ingrediente es igual a alguna posicion dentro de ingredientes
+            if (ingrediente == ingredientes[posicion]){
+                //cambiamos la propiedad a verdadero
+                ingredienteAñadido = true;
+                //alertamos al usuario
+                alert("repetido " + ingrediente);
+                //y dejamos de escanear el arreglo
+                break;
+            }
+        }
+
+        //si la variable "ingredienteAñadido" viene en falso, es porque el ingrediente no se ha añadido antes
+        if (ingredienteAñadido == false){
+            //añadimos el ingrediente al array
+            ingredientes.push(ingrediente);
+            //incrementamos el contador para poder salir del while
+            contador++;
+        }
+    }
+
+    document.write(ingredientes)
+    console.log(ingredientes);
+
+</script>
