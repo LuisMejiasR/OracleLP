@@ -1,17 +1,23 @@
 <canvas width="600" height="400"> </canvas>
 
 <script>
+
     var pantalla = document.querySelector("canvas");
     var pincel = pantalla.getContext("2d");    
     pincel.fillStyle = "grey";
     pincel.fillRect(0,0,600,400); 
-    var colores = ["blue", "red", "green"];
-    var indiceColorActual = 0; // comienza con blue
+
+    //primero creamos un arreglo de colores que vamos a recorrer
+    var colores = ["red", "blue", "green"];
+    //luego creamos una variable del inidice del color actual
+    //cada vez que haya uno de estos eventos se incremente el contador
+    //con ese contador voy a ir viendo cual es el numero en el arreglo en el cúal estoy
+    var indiceColorActual = 0;
 
     function dibujarCirculo(evento){
         var x = evento.pageX - pantalla.offsetLeft;
         var y = evento.pageY - pantalla.offsetTop;    
-        pincel.fillStyle = colores[indiceColorActual];
+        pincel.fillStyle = colores[indiceColorActual];//todo esto lo hago para que se rellene de este color actual
         pincel.beginPath();
         pincel.arc(x,y,10,0,2*3.14);
         pincel.fill();
@@ -21,11 +27,17 @@
     pantalla.onclick = dibujarCirculo;
 
     function alterarColor() {
+
         indiceColorActual++;
-        if(indiceColorActual>= colores.length) {
-             indiceColorActual = 0; //vuelve para el primer color, blue
+        //aquí ponemos una condicional para ver si se pasa del 2
+        //si se pasa del 2, lo regresamos al 0, el indicé inicial del array
+        if (indiceColorActual > colores.length){
+            indiceColorActual = 0;
         }
-        return false; //menú contextual padrón de `canvas` no sea exhibido
+
+        //alert(inidiceColorActual);
+        
+        return false;
     }
 
     pantalla.oncontextmenu = alterarColor;
